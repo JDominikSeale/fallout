@@ -132,7 +132,7 @@ class DB {
     }
 
     public function characterData($id){
-        $query = 'SELECT characters.id, players.name as "playerName", characters.name as "characterName", food, water, sleep, fatigue, food_value, water_value, sleep_value, fatigue_value FROM characters JOIN players ON players.id = player_id WHERE characters.id = ?';
+        $query = 'SELECT characters.id, players.id as "playerID", players.name as "playerName", characters.name as "characterName", food, water, sleep, fatigue, food_value, water_value, sleep_value, fatigue_value FROM characters JOIN players ON players.id = player_id WHERE characters.id = ?';
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -151,6 +151,14 @@ class DB {
         $result = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
         return $result;
+    }
+
+    public function updateStat($stat, $id){
+        $q = "UPDATE characters SET {$stat}={$stat}-1, {$stat}_value=0.00 WHERE id = ?";
+        $stmt = $this->connection->prepare($q);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
     }
 
     public function close() {

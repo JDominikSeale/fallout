@@ -96,6 +96,7 @@ class gameWorld{
 class characters{
 
     private $id;
+    private $playerID;
     private $playerName;
     private $characterName;
     private $hunger;
@@ -111,6 +112,7 @@ class characters{
     public function __construct($detail, $statusLst){
         $d = $detail[0];
         $this->id = $d["id"];
+        $this->playerID = $d["playerID"];
         $this->playerName = $d["playerName"];
         $this->characterName = $d["characterName"];
         $this->hunger = $d["food"];
@@ -125,12 +127,27 @@ class characters{
         $this->sleepTimeElapsed = $d["sleep_value"];
         $this->fatigueTimeElapsed = $d["fatigue_value"];
     }
+    
+    public function sleepElapsed(){
+        return $this->sleepTimeElapsed;
+    }
+    public function foodElapsed(){
+        return $this->hungerTimeElapsed;
+    }
 
-    public function showPlayerName(){
+    public function thirstElapsed(){
+        return $this->thirstTimeElapsed;
+    }
+
+    public function showCharacterPlayerID(){
+        return $this->playerID;
+    }
+
+    public function showCharacterPlayerName(){
         return $this->playerName;
     }
 
-    public function returnPlayerID(){
+    public function returnCharacterID(){
         return $this->id;
     }
 
