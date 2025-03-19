@@ -9,12 +9,16 @@ class home extends gameWorld{
         parent::__construct();
     }
 
+
     public function showPlayers(){
         $d = $this->allPlayers(); // List of player characters
         $output = "";
+        $_SESSION["character_list"] = $d;
         foreach ($d as $p){
+            $characterID = $p->returnCharacterID();
+            $pList[] = $characterID;
             $output .= "
-            <div class='player-card' value={$p->returnCharacterID()}>
+            <div class='player-card' value={$characterID}>
                 <div class='player-name'>
                     <h1>{$p->showCharacterPlayerName()}</h1>
                 </div>
@@ -45,17 +49,19 @@ class home extends gameWorld{
                     </form>
                 </div>
                 <form method='post' action='../../server/logic/characterButton.php'>
-                    <input type='hidden' name='characterID' value={$p->returnCharacterID()}></input>
+                    <input type='hidden' name='characterID' value={$characterID}></input>
                     <div class='button-container'>
                         <div class='food-container'>
-                            <input type='submit' value='Eat' name='food'></input>
+                            <input type='submit' value='Food' name='player-character-button-value'></input>
                         </div>
                         <div class='water-container'>
-                            <input type='submit' value='Water' name='water'></input>
+                            <input type='submit' value='Water' name='player-character-button-value'></input>
                         </div>
+                        <!--
                         <div class='sleep-container'>
-                            <input type='submit' value='Sleep' name='sleep'></input>
+                            <input type='submit' value='Sleep' name='player-character-button-value'></input>
                         </div>
+                        -->
                     </div>
                 </form>
             </div>
@@ -63,6 +69,17 @@ class home extends gameWorld{
         }
         return $output;
     }
+
+    public function showLogs(){
+        $logData = $this->returnLogs();
+
+        echo "<pre>";
+        print_r($logData);
+        exit();
+
+
+    }
+
 
     public function playerCharactersOptions($pID){
         // characters.id
@@ -77,8 +94,6 @@ class home extends gameWorld{
         }
         return $output;
     }
-
-
 }
 
 
