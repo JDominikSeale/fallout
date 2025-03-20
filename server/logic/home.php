@@ -14,6 +14,7 @@ class home extends gameWorld{
         $d = $this->allPlayers(); // List of player characters
         $output = "";
         $_SESSION["character_list"] = $d;
+        $c = 0;
         foreach ($d as $p){
             $characterID = $p->returnCharacterID();
             $pList[] = $characterID;
@@ -42,13 +43,13 @@ class home extends gameWorld{
                         <div class='sleep-container'>
                             <H2>Sleep: <form method='post'><input for='sleep' value={$p->returnCharacterSleep()}></form></H2>
                             <H3>Time Elapsed: <form method='post'><input type='text' for='last_food_time' value={$p->sleepElapsed()}></form></H3>
-                        </div
-                        <div class='fatigue-container'>
-                            <H2>Fatigue: <form method='post'><input type='text' for='fatigue' value={$p->returnCharacterFatigue()}></form></H2>
-                        </div
+                            </div>
+                            <div class='fatigue-container'>
+                                <H2>Fatigue: <form method='post'><input type='text' for='fatigue' value={$p->returnCharacterFatigue()}></form></H2>
+                            </div>
+                        </div>
                     </form>
-                </div>
-                <form method='post' action='../../server/logic/characterButton.php'>
+                    <form method='post' action='../../server/logic/characterButton.php'>
                     <input type='hidden' name='characterID' value={$characterID}></input>
                     <div class='button-container'>
                         <div class='food-container'>
@@ -64,7 +65,7 @@ class home extends gameWorld{
                         -->
                     </div>
                 </form>
-            </div>
+                </div>
             ";
         }
         return $output;
@@ -72,12 +73,23 @@ class home extends gameWorld{
 
     public function showLogs(){
         $logData = $this->returnLogs();
+        $output = "<table>";
+        $output .= "<tr>";
+        $output .= "<th>Time</th>";
+        $output .= "<th>Character</th>";
+        $output .= "<th>Action</th>";
+        foreach($logData as $data){
+            $output .= "<tr>";
+            $output .= "<td>{$data["game_time"]}</td>";
+            $output .= "<td>{$data["name"]}</td>";
+            $output .= "<td>{$data["action"]}</td>";
+            $output .= "</tr>";
 
-        echo "<pre>";
-        print_r($logData);
-        exit();
+        }
 
+        $output .= "</table>";
 
+        return $output;
     }
 
 

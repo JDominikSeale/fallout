@@ -91,30 +91,9 @@ class DB {
     }
 
     public function getLog($excWorld = false){
-        $query = "SELECT
-    *
-FROM
-    (
-    SELECT
-        world_log.id AS logging_id,
-        game_time,
-        characters.name,
-        characters.id,
-        world_log.player_character,
-        actions.action
-    FROM
-        world_log
-    JOIN actions ON world_log.action = actions.id
-    JOIN characters ON world_log.player_character = characters.id
-    ORDER BY
-        world_log.id
-    DESC
-LIMIT 20
-) AS last_20_records
-ORDER BY
-    logging_id ASC";
+        $query = "SELECT * FROM (SELECT world_log.id AS logging_id, game_time, characters.name, characters.id, world_log.player_character, actions.action FROM world_log JOIN actions ON world_log.action = actions.id JOIN characters ON world_log.player_character = characters.id ORDER BY world_log.id DESC LIMIT 20) AS last_20_records ORDER BY logging_id ASC";
         if($excWorld){
-            $query = "SELECT * FROM (SELECT world_log.id AS logging_id, game_time, characters.name, characters.id, world_log.player_character FROM world_log JOIN characters ON world_log.player_character = characters.id WHERE characters.id <> 3ORDER BY world_log.id DESC LIMIT 20) AS last_20_records ORDER BY logging_id ASC";
+            $query = "SELECT * FROM (SELECT world_log.id AS logging_id, game_time, characters.name, characters.id, world_log.player_character FROM world_log JOIN characters ON world_log.player_character = characters.id WHERE characters.id <> 3 ORDER BY world_log.id DESC LIMIT 20) AS last_20_records ORDER BY logging_id ASC";
         }
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
