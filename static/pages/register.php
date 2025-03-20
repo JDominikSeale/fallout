@@ -11,12 +11,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $username = htmlspecialchars($formUsername);
         $password = htmlspecialchars($password);
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $db->registerUser($username, $password);
+        $userID = $db->registerUser($username, $password);
+        if($userID){
+            session_start();
+            $_SESSION["userID"] = $userID;
+            header("Location: home.php");
+            exit();
+        }
     }
 }else{
     $formUsername = null;
 }
-
 ?>
 
 

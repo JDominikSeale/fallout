@@ -3,6 +3,7 @@
 include_once("server/db.php");
 
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if (isset($_POST["login_button"])){
         $formUsername = $_POST["username"];
@@ -10,8 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $username = htmlspecialchars($formUsername);
         $password = htmlspecialchars($password);
         $db = new DB;
-        if($db->checkUserLogin($username, $password) != false){
+        $userID = $db->checkUserLogin($username, $password);
+        if($userID != false){
+            session_start();
+            $_SESSION["userID"] = $userID;
             header("Location: static/pages/home.php");
+            exit();
         }
     }
     if (isset($_POST["register_button"])){

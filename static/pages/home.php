@@ -1,6 +1,13 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+
+    // Bad practice but quick fix to keeping session open and allowing user to log-in
+    error_reporting(E_ERROR | E_PARSE);
+    session_start();
+    
+    if(!(isset($_SESSION["userID"]))){
+        header("Location: ../../index.php");
+        exit();
+    }
     include_once("../../server/logic/home.php");
     $home = new home();
     $_SESSION["player_list"] = [];
