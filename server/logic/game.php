@@ -182,6 +182,12 @@ class characters{
         $this->fatigueTimeElapsed = $d["fatigue_value"];
     }
 
+    public function shortRest(){
+        if($this->sleep > 2){
+            $this->sleep -= 1;
+        }
+    }
+
     public function setSleep($v){
         $this->sleep = $v;
     }

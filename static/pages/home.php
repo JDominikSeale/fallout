@@ -33,6 +33,9 @@
                         <div class='group-short-rest-container'>
                             <input type="submit" value="Short Rest" name="short_rest"></input>
                         </div>
+                        <div class='group-short-value-container'>
+                            <input type="text" name="short_rest_value" placeholder="Short Rest: 1.30"></input>
+                        </div>
                         <div class='group-reset-contaier'>
                             <input type="submit" value="Group Reset" name="group_reset"></input>
                         </div>

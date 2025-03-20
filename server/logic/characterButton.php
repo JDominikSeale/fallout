@@ -72,27 +72,48 @@ if(isset($_POST)){
         $homeLogic->addGameTime($restTime, 0, $restID, false,$trackUpdate);
 
     }elseif(isset($_POST["short_rest"])){
-        $restTime = 6;
+        $restTime = $_POST["short_rest_value"];
+        $restTime = $restTime === "" ? '1.00' : $restTime;
+        $restTime = explode(".", $restTime);
+        $hour = (int) $restTime[0];
+        $min = $restTime[1];
+        if(strlen($min) < 2){
+            $min = $min . "0";
+        }
+        $min = (int) $min;
+        $min = $min !== 0 ? $min / 2 : $min;
+        $min = ceil($min);
+        
+        print($hour . " " . $min);
         $rest = true;
         $restID = 5;
         $trackUpdate = false;
+
+        // Change the loop to account for minutes added, do this by running through hours and then add min at the end
+        // only if min is greater than 0
+
         foreach($characterList as $character){
-            for($i = 0; $i<$restTime; $i++){
-                $character->timeElapse(0, 30);
+            // This makes sure that the hours and mins are added correctly and prevents an issue where
+            // GM requests 6.3 hours (6 hours and 30 mins) it would add the 30 min 6 times
+            for($i = 0; $i<$hour; $i++){
+                $character->timeElapse(1, 0);
+            }
+            if($min > 0){
+                $character->timeElapse(0, $min);
             }
             // Reset Sleep
 
-            $character->setSleep(1);
+            $character->shortRest(1);
             $character->setSleepElapsed(0.00);
             $character->setFatigue(0);
 
             //Update Characters
             $homeLogic->setCharacterList($characterList);
-            $homeLogic->addGameTime($restTime, 0, $restID, $rest, $trackUpdate);
+            $homeLogic->addGameTime($hour, $min, $restID, $rest, $trackUpdate);
         }
         // Update Entire Game
         $homeLogic->setCharacterList($characterList);
-        $homeLogic->addGameTime($restTime, 0, $restID, false,$trackUpdate);
+        $homeLogic->addGameTime($hour, $min, $restID, false, $trackUpdate);
     }
 }
 header('Location: ../../static/pages/home.php');
