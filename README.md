@@ -4,7 +4,7 @@ This project is based on the game rules/set from the [Fallout: The Roleplaying g
 
 This is based off 4 players (not including the GM) to be tracked using my system.
 
-As this is based off the [Fallout 5e](https://marketplace.roll20.net/browse/bundle/16138/fallout-the-roleplaying-game), and not a full one to one, __Long Rest__ and __Short Rest__ will only take half from the __Eat/Food__ and __Drink/Water__ statuses.
+As this is based off the [Fallout: The Roleplaying game](https://marketplace.roll20.net/browse/bundle/16138/fallout-the-roleplaying-game), and not a full one to one, __Long Rest__ and __Short Rest__ will only take half from the __Eat/Food__ and __Drink/Water__ statuses.
 
 ## Download and setup for offline use
 
