@@ -1,4 +1,4 @@
-# Fallout DND/RPG
+# Fallout DND/TTRPG
 
 This project is based on the game rules/set from the [Fallout: The Roleplaying game](https://marketplace.roll20.net/browse/bundle/16138/fallout-the-roleplaying-game), and is designed to assist the GM/DM(Game Master/Dungeon Master) in tracking details of characters not normally required in normal 5e D&D.
 
