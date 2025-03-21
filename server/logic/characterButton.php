@@ -74,6 +74,15 @@ if(isset($_POST)){
     }elseif(isset($_POST["short_rest"])){
         $restTime = $_POST["short_rest_value"];
         $restTime = $restTime === "" ? '1.00' : $restTime;
+
+        $arRestTime = str_split($restTime);
+        foreach($arRestTime as $letter){
+            if(ctype_alpha($letter)){
+                $restTime = '1.00';
+                break;
+            }
+        }
+
         $restTime = explode(".", $restTime);
         $hour = (int) $restTime[0];
         $min = $restTime[1];
