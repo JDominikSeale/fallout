@@ -1,6 +1,6 @@
 # Fallout DND/TableTop RPG
 
-This project is based on the game rules/set from the [Fallout: The Roleplaying game](https://marketplace.roll20.net/browse/bundle/16138/fallout-the-roleplaying-game), and is designed to assist the GM/DM(Game Master/Dungeon Master) in tracking details of characters not normally required in normal games such as "5e D&D".
+This project is based on the game rules/set from the [Fallout: The Roleplaying game](https://marketplace.roll20.net/browse/bundle/16138/fallout-the-roleplaying-game), and is designed to assist the GM/DM(Game Master/Dungeon Master) in tracking details of characters not normally required in games such as "5e D&D".
 
 This is based off 4 players (not including the GM) to be tracked using my system.
 
