@@ -195,6 +195,20 @@ class DB {
         $st->close();
     }
 
+
+    public function playersGames($id){
+        $q = "SELECT games.id, games.name, games.owner, characters.name AS 'character_name' FROM games JOIN characters ON characters.id = games.character WHERE games.owner = ?";
+        $st = $this->connection->prepare($q);
+        $st->bind_param("i", $id);
+        $st->execute();
+        $result = $st->get_result();
+        $result = $result->fetch_all();
+        return $result;
+    }
+
+
+
+
     public function close() {
         if ($this->connection) {
             $this->connection->close();
