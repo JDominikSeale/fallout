@@ -87,7 +87,9 @@ class gameWorld{
         }
 
         if($this->hour >= 24){
-            $this->hour -= 24;
+            while($this->hour >= 24){
+                $this->hour -= 24;
+            }
         }
 
         $nMin = $this->minute;
