@@ -77,7 +77,10 @@ Similarly time to pass should also be held within the __Database__, even though 
 
 AI is a very helpful tool, in spite of this I am proud to state that the back-end and HTML elementent were written with good ol' elbow grease. Sadly I cannot say the same for the CSS, reminder, this project was meant to assist in the building of my back-end skills.
 
+## Login Page
+![image](https://github.com/user-attachments/assets/6b4378d3-909b-4ede-9717-95cf011d1c4e)
 
-
+## DM Management Page
+![image](https://github.com/user-attachments/assets/9e0d324b-5c52-42e2-bfe2-f0103853f76f)
 
 
